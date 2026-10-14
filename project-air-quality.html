@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Low-Cost Air Quality Monitor | Prashant Bhusal</title>
+  <meta name="description" content="A portable, low-cost indoor air quality monitor built around an ESP32 and three sensors, tested against standard instruments during biomass cooking.">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Prashant Bhusal</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Intro</a>
+        <a href="project-esp.html">ESP study</a>
+        <a href="project-hvac.html">HVAC sizing</a>
+        <a href="project-ev.html">EV energy</a>
+        <a href="project-air-quality.html" aria-current="page">Air quality</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button">Light mode</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back" href="index.html">Back to intro</a>
+      <h1>IoT-Based Low-Cost Indoor Air Quality Monitoring and Data Logging System</h1>
+      <p class="lead">Comparative analysis with standard devices</p>
+      <p class="meta">Research paper draft · Kathmandu University, Department of Mechanical Engineering · Apr 2024 – Mar 2025 · Nine authors</p>
+      <div class="actions">
+        <a class="button primary" href="assets/Air_Quality_Monitor_Paper.pdf">Read the paper draft (PDF)</a>
+      </div>
+
+      <h2>Overview</h2>
+      <p>Accurate air quality monitors are expensive and usually fixed in one place, which makes them hard to use in rural homes. In Nepal about 69% of people still cook with biomass, so indoor smoke is a serious health problem.</p>
+      <p>This project builds a portable, real-time monitor from low-cost parts, then tests how close its readings come to professional instruments.</p>
+
+      <h2>The device</h2>
+      <ul class="plain">
+        <li><strong>ESP32-WROOM-32</strong> microcontroller with built-in Wi-Fi.</li>
+        <li><strong>PMS5003</strong> laser sensor for particulate matter (PM1, PM2.5 and PM10).</li>
+        <li><strong>MQ-7B</strong> sensor for carbon monoxide.</li>
+        <li><strong>DHT11</strong> sensor for temperature and humidity.</li>
+        <li>A custom circuit board, and a ventilated enclosure designed in SolidWorks and 3D printed in PLA.</li>
+        <li>Readings go over Wi-Fi to a Python API and a MySQL database, and a Flutter mobile app shows them live on Android and iOS.</li>
+        <li>The whole system draws 352.5 mA at 5 V, about 1.76 W, so a USB port can power it.</li>
+      </ul>
+      <figure class="fig">
+        <img src="assets/aq-device.jpg" alt="CAD model of the enclosure beside a photo of the finished device with the ESP32, PMS5003, MQ-7B and DHT11 labelled" loading="lazy">
+        <figcaption>The enclosure in CAD, and the finished device with its four main components.</figcaption>
+      </figure>
+
+      <h2>How it was tested</h2>
+      <p>The monitor ran for 4 hours in a closed 26 m³ room at the Air Pollution and Health Research lab, with no airflow. A traditional one-pot stove burning biomass was the pollution source, following a cold-start water-boiling test. The sensors sat 1 m from the stove at 1.5 m height, about where a person breathes.</p>
+      <p>A Met One Aerocet 831 measured particulate matter and an Aeroqual Series 500 measured carbon monoxide, as reference instruments.</p>
+      <figure class="fig">
+        <img src="assets/aq-setup.jpg" alt="Floor plan of the test room and a photo of the monitor, laptop and reference instrument in place" loading="lazy">
+        <figcaption>Layout of the test room, and the actual setup.</figcaption>
+      </figure>
+
+      <h2>Results</h2>
+      <ul class="plain">
+        <li>Both low-cost sensors followed the same rise and fall as the reference instruments during combustion.</li>
+        <li>The MQ-7B consistently read higher than the Aeroqual for carbon monoxide, but its deviation was the more acceptable of the two.</li>
+        <li>The PMS5003 read higher than the Aerocet for PM1, PM2.5 and PM10 and swung more, so it showed the larger deviation.</li>
+        <li>Temperature stayed between 20 and 30 °C and humidity between 40 and 60% during the test.</li>
+      </ul>
+      <figure class="fig">
+        <img src="assets/aq-co.jpg" alt="Line chart of carbon monoxide readings from the MQ-7B and the Aeroqual Series 500 over 241 minutes" loading="lazy">
+        <figcaption>Carbon monoxide: MQ-7B against the Aeroqual Series 500.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/aq-pm25.jpg" alt="Line chart of PM2.5 readings from the PMS5003 and the Aerocet 831 over 241 minutes" loading="lazy">
+        <figcaption>PM2.5: PMS5003 against the Aerocet 831.</figcaption>
+      </figure>
+
+      <h2>Conclusion</h2>
+      <p>Low-cost sensors can track air quality well once they are calibrated, and the monitor is cheap and low-power enough to carry around. Next steps in the paper: better calibration, more pollutant sensors, and real-time correction of the readings.</p>
+      <p class="note">This is a draft of the paper, and my co-authors and I wrote it together.</p>
+
+      <h2>Tools and methods</h2>
+      <ul class="tags">
+        <li>ESP32</li>
+        <li>Sensor calibration</li>
+        <li>PCB design</li>
+        <li>SolidWorks</li>
+        <li>3D printing</li>
+        <li>Python and MySQL</li>
+        <li>Flutter</li>
+      </ul>
+
+      <nav class="pager" aria-label="Projects">
+        <a href="project-ev.html">Previous: EV energy</a>
+        <span></span>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Prashant Bhusal</span>
+      <a href="mailto:prashantbhusal07@gmail.com">prashantbhusal07@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

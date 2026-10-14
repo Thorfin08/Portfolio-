@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EV Energy Prediction | Prashant Bhusal</title>
+  <meta name="description" content="A terrain-sensitive machine learning model that predicts electric vehicle energy consumption and driving range on the hilly Kathmandu to Manthali route, using real-world GPS data.">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Prashant Bhusal</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Intro</a>
+        <a href="project-esp.html">ESP study</a>
+        <a href="project-hvac.html">HVAC sizing</a>
+        <a href="project-ev.html" aria-current="page">EV energy</a>
+        <a href="project-air-quality.html">Air quality</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button">Light mode</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back" href="index.html">Back to intro</a>
+      <h1>A Data-Driven Approach to Predict Driving Range and Energy Consumption in Electric Vehicles Using Real-World Data</h1>
+      <p class="meta">Final project report · Kathmandu University, Department of Mechanical Engineering · February 2026 · Team of four</p>
+      <div class="actions">
+        <a class="button primary" href="assets/EV_Energy_Prediction_Report.pdf">Read the full report (PDF)</a>
+      </div>
+
+      <h2>Overview</h2>
+      <p>How far an electric vehicle can go depends on how much energy it uses, and on a hilly road that changes a lot from one stretch to the next. Most energy models are built on standard drive cycles and do not handle long climbs and descents well.</p>
+      <p>This project builds a model for the Kathmandu to Manthali route, about 256 km of steep and varied road. It combines a physics-based energy calculation with a Random Forest model, so the prediction reflects the terrain as well as the driving.</p>
+
+      <h2>Data</h2>
+      <p>GPS logger data from a passenger vehicle that drove between Kathmandu and Manthali every day for three months. Each record has latitude, longitude, speed, heading, altitude and time.</p>
+
+      <h2>Method</h2>
+      <ul class="plain">
+        <li>Removed outliers, filled the gaps with cubic spline interpolation to get one reading per second, and smoothed sensor noise with a Kalman filter.</li>
+        <li>Calculated the mechanical energy at the wheels from vehicle dynamics: rolling resistance, the pull of gravity on slopes, air drag and acceleration.</li>
+        <li>Labelled the driving as idling, cruising, accelerating or decelerating, and added up energy over 3 km segments.</li>
+        <li>Trained a Random Forest (100 trees, maximum depth 10) on 75% of the trips and tested it on the other 25%.</li>
+      </ul>
+
+      <figure class="fig">
+        <img src="assets/ev-route.jpg" alt="Map of the Kathmandu to Manthali route drawn from the interpolated GPS data" loading="lazy">
+        <figcaption>The route for one round trip, plotted from the interpolated GPS data.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/ev-preprocessing.jpg" alt="Line chart of raw and processed vehicle speed over one day" loading="lazy">
+        <figcaption>Raw speed readings against the processed signal after outlier removal, interpolation and Kalman filtering.</figcaption>
+      </figure>
+
+      <h2>Results</h2>
+      <dl class="results">
+        <dt>Energy model</dt><dd>R² of 0.8273 and RMSE of 0.145 kWh per 3 km segment on the test trips.</dd>
+        <dt>Tuning</dt><dd>R² improved from 0.7505 with default settings to 0.8273 after tuning the hyperparameters.</dd>
+        <dt>Driving range</dt><dd>Using a usable battery capacity of about 41.86 kWh, the model predicted an average range of 357.27 km. The actual average was 363.76 km.</dd>
+        <dt>Range error</dt><dd>3.92% MAPE per trip, with an RMSE of 20.22 km.</dd>
+      </dl>
+      <figure class="fig">
+        <img src="assets/ev-accuracy.jpg" alt="Scatter plot of predicted against actual energy for 3 km segments, close to the perfect prediction line" loading="lazy">
+        <figcaption>Predicted against actual energy for 3 km segments. Points near the dashed line are accurate predictions.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/ev-features.jpg" alt="Bar chart of feature importance, led by uphill terrain and total elevation gain" loading="lazy">
+        <figcaption>Feature importance. Uphill terrain and total elevation gain matter most, which matches what the physics predicts.</figcaption>
+      </figure>
+
+      <h2>Tools and methods</h2>
+      <ul class="tags">
+        <li>Random Forest</li>
+        <li>Kalman filter</li>
+        <li>Cubic spline interpolation</li>
+        <li>Vehicle dynamics</li>
+        <li>GIS mapping</li>
+      </ul>
+
+      <nav class="pager" aria-label="Projects">
+        <a href="project-hvac.html">Previous: HVAC sizing</a>
+        <a href="project-air-quality.html">Next: Air quality</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Prashant Bhusal</span>
+      <a href="mailto:prashantbhusal07@gmail.com">prashantbhusal07@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

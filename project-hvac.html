@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HVAC Sizing | Prashant Bhusal</title>
+  <meta name="description" content="Heating and cooling load calculation, heat pump sizing, seasonal energy forecast and efficiency measures for a residential building in the Terai plains of Nepal.">
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">Prashant Bhusal</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Intro</a>
+        <a href="project-esp.html">ESP study</a>
+        <a href="project-hvac.html" aria-current="page">HVAC sizing</a>
+        <a href="project-ev.html">EV energy</a>
+        <a href="project-air-quality.html">Air quality</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button">Light mode</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="back" href="index.html">Back to intro</a>
+      <h1>HVAC Sizing (Heating and Cooling Load Calculation)</h1>
+      <p class="lead">A house in the Terai plains of western Nepal</p>
+      <p class="meta">Report: Thermal Load Analysis, HVAC System Sizing, and Energy Performance Optimization of a Residential Building · Refrigeration and Air Conditioning course, Kathmandu University · June 2026 · Individual report</p>
+      <div class="actions">
+        <a class="button primary" href="assets/Residential_HVAC_Design_Report.pdf">Read the full report (PDF)</a>
+      </div>
+
+      <h2>Overview</h2>
+      <p>A heating and cooling system has to be sized to match the building. Too small and the rooms are uncomfortable, too large and it wastes energy. This report works through the whole process for a residence in Tilottama, Rupandehi: describing the building, calculating its loads, choosing and sizing the equipment, forecasting a year of energy use, and testing ways to cut it.</p>
+      <p>Two rooms were studied in detail because together they show the two most common wall conditions in the house.</p>
+      <ul class="plain">
+        <li><strong>Living room:</strong> 13 × 11 × 10 ft, 143 ft², two exterior walls (south and west) and two windows.</li>
+        <li><strong>Secondary room:</strong> 11 × 10 × 10 ft, 110 ft², one exterior wall (west) and one window.</li>
+      </ul>
+      <p>The two rooms add up to 253 ft² (23.5 m²). The building is a south-facing house of 225 mm brick walls, an uninsulated 125 mm concrete roof slab and single-pane glass, which is typical Nepali construction.</p>
+
+      <h2>How the loads were calculated</h2>
+      <ul class="plain">
+        <li><strong>Heating:</strong> the steady-state UA method (Q = U × A × ΔT) for every wall, window, roof and floor, plus infiltration and ventilation. Design conditions were 6.0 °C outdoors and 25 °C indoors.</li>
+        <li><strong>Cooling:</strong> the ETD/CLTD method, with sensible and latent loads worked out separately. Design conditions were 41.5 °C dry-bulb and 28.6 °C wet-bulb outdoors, and 25 °C and 50% relative humidity indoors. Humidity ratios for the latent loads were read from the psychrometric chart.</li>
+        <li><strong>Inputs:</strong> solar gain through glass, five occupants per room, lighting and appliances, air leakage by the crack method, and ventilation of 125 CFM per room by the people method.</li>
+        <li>A 10% safety factor was added to both heating and cooling loads. The report's appendix shows every calculation step by step.</li>
+      </ul>
+
+      <h2>Results</h2>
+      <dl class="results">
+        <dt>Heating load</dt><dd>Living room 4.52 kW, secondary room 3.44 kW. Whole house 7.95 kW (27,140 Btu/hr).</dd>
+        <dt>Cooling load</dt><dd>Living room 2.54 TR, secondary room 2.06 TR. Whole house 4.61 TR (55,270 Btu/hr).</dd>
+        <dt>Sensible heat ratio</dt><dd>0.71 for the living room and 0.65 for the secondary room.</dd>
+        <dt>Biggest loads</dt><dd>The roof is the largest envelope load in both seasons. Ventilation is the largest part of the heating load: 33% in the living room and 43% in the secondary room.</dd>
+        <dt>Equipment</dt><dd>One reversible inverter heat pump split system (R32 refrigerant) per room: 3.0 TR for the living room and 2.5 TR for the secondary room, rounded up to the next standard size. Cooling governs in both rooms.</dd>
+        <dt>Energy use</dt><dd>About 7,399 kWh a year if the system ran all day, 87% of it for cooling. With realistic intermittent use the estimate is about 2,600 to 3,300 kWh a year, or roughly NPR 26,000 to 40,000.</dd>
+      </dl>
+      <p>The climate is cooling-dominated, so the pre-monsoon months of April to June carry the highest demand, with May the peak.</p>
+
+      <figure class="fig">
+        <img src="assets/hvac-climate.jpg" alt="Line chart of average monthly maximum and minimum temperature for Tilottama and Bhairahawa with the 18.3 degree balance point" loading="lazy">
+        <figcaption>Monthly temperatures for Tilottama and Bhairahawa, with the 18.3 °C balance point used for the degree-day energy estimate.</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/hvac-demand.jpg" alt="Bar chart of estimated monthly heating and cooling electricity for the two rooms" loading="lazy">
+        <figcaption>Estimated monthly electricity for the two rooms if the system ran continuously. Cooling dominates from March to November.</figcaption>
+      </figure>
+
+      <h2>Ways to cut energy use</h2>
+      <p>Five measures were costed and compared against the 7,399 kWh baseline.</p>
+      <ul class="plain">
+        <li><strong>Roof insulation (50 mm PUF or XPS board):</strong> about 1,554 kWh a year saved, paying back in 2.3 to 2.5 years. This is the biggest single saving.</li>
+        <li><strong>Air sealing and weatherstripping:</strong> about 110 kWh a year, paying back in under 2 years.</li>
+        <li><strong>External window shading:</strong> about 269 kWh a year, paying back in 3 to 5 years.</li>
+        <li><strong>Reflective roof coating:</strong> about 276 kWh a year, paying back in 6 to 7 years.</li>
+        <li><strong>Double glazing with Low-E glass:</strong> about 445 kWh a year, paying back in 8 to 10 years.</li>
+      </ul>
+      <p>All five together could save about 2,654 kWh a year, around 36% of the baseline. The report recommends starting with air sealing, roof insulation and shading.</p>
+
+      <h2>Methods and tools</h2>
+      <ul class="tags">
+        <li>UA method</li>
+        <li>ETD/CLTD method</li>
+        <li>Psychrometric chart</li>
+        <li>Degree-day method</li>
+        <li>Heat pump sizing</li>
+        <li>Payback analysis</li>
+      </ul>
+
+      <nav class="pager" aria-label="Projects">
+        <a href="project-esp.html">Previous: ESP study</a>
+        <a href="project-ev.html">Next: EV energy</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Prashant Bhusal</span>
+      <a href="mailto:prashantbhusal07@gmail.com">prashantbhusal07@gmail.com</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
